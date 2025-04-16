@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Genesis Bonds</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f7f7;
+      color: #333;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h1, h2, h3 {
+      color: #008080;
+      text-align: center;
+    }
+
+    ul, ol {
+      padding-left: 1.5rem;
+    }
+
+    img {
+      display: block;
+      margin: 1rem auto;
+      border-radius: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+      text-align: left;
+      padding: 0.5rem;
+    }
+
+    .highlight {
+      background-color: #e0f7fa;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 6px;
+    }
+
+    .recipe-box {
+      margin-top: 2rem;
+      background-color: #fff3cd;
+      padding: 1rem;
+      border-left: 4px solid #ffecb5;
+      border-radius: 4px;
+    }
+
+    a {
+      color: #007bff;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>About Genesis Bonds (Class Demo)</h1>
+
+    <img src="https://pbs.twimg.com/media/GmfsBGRbAAA-ohF?format=jpg&name=large" width="300" height="300" alt="Genesis headshot" />
+
+    <h3>Fun Facts About Me</h3>
+    <ul>
+      <li>Born & Raised in Jamaica, Queens</li>
+      <li>Love anime. One Piece is <u>fantastic</u> 🏴‍☠️</li>
+      <li>Founder of <strong>The Perfect Byte</strong>, a company that blends food and tech </li>
+      <li>Senior Software Engineer with 8+ years of experience in TypeScript, JavaScript, React</li>
+      <li>Hope to open a restaurant one day</li>
+      <li>My brother AJ is a musician; <a href="https://www.youtube.com/results?search_query=aj+peoples+" target="_blank">check him out</a> 🎶</li>
+    </ul>
+
+    <h3>My Contact Info</h3>
+    <p>Email me at: <a href="mailto:genesis.bonds@gmail.com">genesis.bonds@gmail.com</a></p>
+
+    <h3>Some Basic HTML Elements:</h3>
+    <ol>
+      <li>This page uses headings, images, lists, links, tables, and styles</li>
+      <li>Bonus: there's a fetch request below </li>
+    </ol>
+
+    <h3>People Table</h3>
+    <table>
+      <tr><th>Name</th><th>Age</th></tr>
+      <tr><td>Genesis</td><td>30</td></tr>
+      <tr><td>Someones Name</td><td>3</td></tr>
+      <tr><td>Another Person</td><td>10</td></tr>
+    </table>
+
+    <div class="highlight">
+      <h3>Play Cool Math Games</h3>
+      <p><a href="https://www.coolmathgames.com/" target="_blank">Click here to play 🔢🎮</a></p>
+    </div>
+
+    <div class="recipe-box" id="recipe-box">
+      <h3>Recipe of the Day 🍲</h3>
+      <p>Loading a delicious idea...</p>
+    </div>
+
+  </div>
+
+  <script>
+    // Fetch a random meal from TheMealDB API
+    fetch("https://www.themealdb.com/api/json/v1/1/random.php")
+      .then(response => response.json())
+      .then(data => {
+        const meal = data.meals[0];
+        const recipeBox = document.getElementById('recipe-box');
+        recipeBox.innerHTML = `
+          <h3>Recipe of the Day 🍲</h3>
+          <strong>${meal.strMeal}</strong><br>
+          <img src="${meal.strMealThumb}" width="250" alt="${meal.strMeal}" style="margin-top:10px;border-radius:8px;" /><br><br>
+          <a href="${meal.strSource || meal.strYoutube}" target="_blank">View Full Recipe</a>
+        `;
+      })
+      .catch(err => {
+        document.getElementById('recipe-box').innerHTML = '<p>Could not load a recipe. Try again later!</p>';
+        console.error(err);
+      });
+  </script>
+
+</body>
+</html>
